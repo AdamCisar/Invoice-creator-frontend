@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'; // Import Stack from Material-UI
 
 const Item = ({ items }) => {
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const itemsPerPage = 6;
 
@@ -22,7 +22,7 @@ const Item = ({ items }) => {
     setTotalPages(Math.ceil(items.length / itemsPerPage));
   }, [items]);
 
-  const startIndex = (currentPage - 1) * itemsPerPage; // Fix the calculation
+  const startIndex = (currentPage - 1) * itemsPerPage; 
   const endIndex = currentPage * itemsPerPage;
   const subset = items.slice(startIndex, endIndex);
 
