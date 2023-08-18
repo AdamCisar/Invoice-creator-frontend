@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Item.css';
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack'; // Import Stack from Material-UI
+import Stack from '@mui/material/Stack';
 
 const Item = ({ items }) => {
   const [loading, setLoading] = useState(true);

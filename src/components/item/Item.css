@@ -10,8 +10,8 @@
   padding: 10px;
   border-radius: 100px; 
   width: 750px;
-  opacity: 0; /* Hide initially */
-  transform: translateY(20px); /* Move down initially */
+  opacity: 0; 
+  transform: translateY(20px); 
   transition: opacity 0.5s, transform 0.5s;
 }
 
