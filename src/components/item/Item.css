@@ -128,6 +128,11 @@
   }
 
   .pagination {
-    max-width: 10px;
+    width: 100%;
+  }
+
+  .card__hover-content{
+    display: block;
+    margin-bottom: 30px;
   }
 }

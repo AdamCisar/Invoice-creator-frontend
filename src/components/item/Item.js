@@ -53,7 +53,7 @@ const Item = ({ items }) => {
       <Stack direction="row" spacing={2} justifyContent="center" className='pagination'>
         <Pagination
           count={totalPages}
-          initialpage={currentPage}
+          page={currentPage}
           onChange={handlePageChange}
           size="large" 
         />

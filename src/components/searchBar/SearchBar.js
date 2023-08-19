@@ -11,6 +11,9 @@ const SearchBar = () => {
   const [showItems, setShowItems] = useState(false);
  
   const handleSearch = async () => {
+    if(query === ""){
+      return;
+    }
     setShowItems(true);
     setIsLoading(true);
     const data = await searchForItems(query);
