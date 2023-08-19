@@ -98,3 +98,36 @@
 .pagination {
   margin-left: 50%;
 }
+
+@media (max-width: 768px) {
+  .card-container {
+    width: 50%;
+    margin-left: 15%;
+  }
+
+  .card {
+    width: 100%; 
+    max-height: none;
+  }
+
+  .card__img {
+    width: 0px; 
+  }
+
+  .card__content {
+    flex-direction: column;
+    width: 60%;
+  }
+
+  .card__title {
+    width: 50%; 
+  }
+
+  a.url {
+    width: 15%;
+  }
+
+  .pagination {
+    max-width: 10px;
+  }
+}

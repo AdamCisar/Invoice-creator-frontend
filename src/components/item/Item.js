@@ -7,7 +7,8 @@ const Item = ({ items }) => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const itemsPerPage = 6;
+  const isPhone = window.innerWidth <= 800;
+  const itemsPerPage = isPhone ? 3 : 6;
 
   useEffect(() => {
     const loadingTimeout = setTimeout(() => {
@@ -18,7 +19,6 @@ const Item = ({ items }) => {
   }, [items]);
 
   useEffect(() => {
-    console.log("Items Length:", items);
     setTotalPages(Math.ceil(items.length / itemsPerPage));
   }, [items]);
 
@@ -35,11 +35,11 @@ const Item = ({ items }) => {
       {subset.map((item, index) => (
         <div className={`card ${!loading ? 'show' : ''}`} key={index}>
           <div className="card__img">
-            <img src={`https://www.empiria.sk${item.imageUrl}`} alt="No image" />
+            <img src={`https://www.empiria.sk${item.imageUrl}`} alt=" "/>
           </div>
           <div className="card__content">
             <h4 className="card__title">
-              <a href={item.url}>{item.name}</a>
+              <a className='url' href={item.url}>{item.name}</a>
             </h4>
             <div className="card__price">
               <span>{item.price} €</span>

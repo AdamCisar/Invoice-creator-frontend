@@ -1,5 +1,7 @@
 import React from 'react';
 import './Sidebar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileInvoice, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const SideBar = () => {
   const invoices = [
@@ -11,7 +13,12 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        Invoices
+      <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
+          <span className='title'>Faktúry</span>
+        <button className="create-invoice-button">
+          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+          <span className="button-label">Vytvoriť faktúru</span>
+        </button>
       </div>
       <div className="invoice-list">
         {invoices.map(item => (
