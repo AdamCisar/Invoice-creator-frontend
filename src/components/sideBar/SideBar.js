@@ -13,7 +13,6 @@ const SideBar = () => {
     async function fetchInvoices() {
       try {
         const data = await getInvoices();
-        console.log(data);
         setInvoices(data);
       } catch (error) {
         console.error("Error fetching invoices:", error);
