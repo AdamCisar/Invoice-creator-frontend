@@ -1,0 +1,37 @@
+.modal-title {
+    font-family: 'Courier New', monospace;
+} 
+.modal-body {
+    justify-content: center;
+    display: flex;
+  }
+
+.invoice-input {
+    width: 50%; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+
+  .create-invoice-button-modal{
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 8px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    margin-left: 10%;
+    width: 150px; 
+    font-family: 'Courier New', monospace;
+    font-size: 14px; 
+  }
+
+  .create-invoice-button-modal:hover {
+    background-color: #525252;
+  }

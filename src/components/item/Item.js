@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Item.css';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Pagination from 'react-bootstrap/Pagination';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 
 const Item = ({ items }) => {
   const [loading, setLoading] = useState(true);
@@ -9,6 +11,7 @@ const Item = ({ items }) => {
   const [totalPages, setTotalPages] = useState(0);
   const isPhone = window.innerWidth <= 800;
   const itemsPerPage = isPhone ? 3 : 6;
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const loadingTimeout = setTimeout(() => {
@@ -22,12 +25,20 @@ const Item = ({ items }) => {
     setTotalPages(Math.ceil(items.length / itemsPerPage));
   }, [items]);
 
-  const startIndex = (currentPage - 1) * itemsPerPage; 
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = currentPage * itemsPerPage;
   const subset = items.slice(startIndex, endIndex);
 
-  const handlePageChange = (event, newPage) => {
+  const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+  };
+
+  const saveItem = async (item) => {
+    try {
+      setMessage('Produkt bol uložený do databázy.');
+    } catch (error) {
+      setMessage('Nepodarilo sa uložiť produkt do databázy.');
+    }
   };
 
   return (
@@ -35,29 +46,38 @@ const Item = ({ items }) => {
       {subset.map((item, index) => (
         <div className={`card ${!loading ? 'show' : ''}`} key={index}>
           <div className="card__img">
-            <img src={`https://www.empiria.sk${item.imageUrl}`} alt=" "/>
+            <img src={`${item.imageUrl}`} alt=" " />
           </div>
           <div className="card__content">
-            <h4 className="card__title">
-              <a className='url' href={item.url}>{item.name}</a>
+            <h4 className="card-title">
+              <a className="url" href={item.url}>
+                {item.name}
+              </a>
             </h4>
             <div className="card__price">
               <span>{item.price} €</span>
             </div>
           </div>
           <div className="card__hover-content">
-            <button className="card__button">Uložiť</button>
+            <Button onClick={() => saveItem(item)} className="card__button">
+              Uložiť
+            </Button>
           </div>
         </div>
       ))}
-      <Stack direction="row" spacing={2} justifyContent="center" className='pagination'>
+      <div className="d-flex justify-content-center pagination">
         <Pagination
           count={totalPages}
           page={currentPage}
           onChange={handlePageChange}
-          size="large" 
+          size="large"
         />
-      </Stack>
+      </div>
+      {message && (
+        <Alert variant="success" onClose={() => setMessage('')} dismissible>
+          {message}
+        </Alert>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@
   max-height: 100px;
 }
 .search-bar {
-  width: 100%; 
+  width: 120%; 
   max-width: 400px;
   display: flex;
   align-items: center;
@@ -19,6 +19,7 @@
   border-radius: 30px;
   margin-right: 10px;
   font-family: 'Courier New', monospace;
+  font-weight: bold;
 }
 
 .search-bar button {
@@ -30,6 +31,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: 'Courier New', monospace;
+  font-weight: bold;
 }
 
 .search-bar button:hover {

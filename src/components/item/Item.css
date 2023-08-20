@@ -40,6 +40,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 15px;
+  font-weight: bold;
 }
 
 .card__button:hover {
@@ -90,9 +91,8 @@
 }
 
 .card__price {
-  margin-left: auto;
+  font-family: Sans-serif;
   font-weight: bold;
-  color: #e74c3c;
 }
 
 .pagination {
