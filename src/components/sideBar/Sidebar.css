@@ -93,8 +93,7 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 100px; 
-    padding: 5px;
+    display: none; 
   }
   .create-invoice-button {
     width: 40px; 

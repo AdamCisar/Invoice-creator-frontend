@@ -54,8 +54,11 @@ const CreateInvoice = ({ showModal, setShowModal, onInvoiceCreated }) => {
         {message && (
         <Message
           message={message}
-          onClose={() => setMessage('')}
-        />
+          onClose={() => {
+            setMessage('');
+            setShowModal(false);
+          }}
+      />
       )}
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
