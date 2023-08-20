@@ -3,11 +3,6 @@
     flex-wrap: wrap; 
   }
   
-  .SideBar {
-    max-width: 300%;
-    flex-shrink: 0; 
-  }
-
   .Content {
     flex: 1;
     display: block;

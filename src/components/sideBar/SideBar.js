@@ -1,13 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileInvoice, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faFileInvoice, faPlus } from '@fortawesome/free-solid-svg-icons';
 import CreateInvoice from '../createInvoice/CreateInvoice';
 import { getInvoices } from '../service/InvoiceService';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const SideBar = () => {
   const [showModal, setShowModal] = useState(false);
   const [invoices, setInvoices] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const invoicesPerPage = 8;
+
+  useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+    }, 1350);
+    return () => clearTimeout(loadingTimeout);
+  }, [invoices]);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(invoices.length / invoicesPerPage));
+  }, [invoices]);
+
+  const startIndex = (currentPage - 1) * invoicesPerPage; 
+  const endIndex = currentPage * invoicesPerPage;
+  const subset = invoices.slice(startIndex, endIndex);
+
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
 
   useEffect(() => {
     async function fetchInvoices() {
@@ -25,19 +51,27 @@ const SideBar = () => {
   const handleInvoiceCreated = (newInvoice) => {
     setInvoices([...invoices, newInvoice]);
   };
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
   
   return (
-    <div className="sidebar">
-      <div className="sidebar-header">
-      <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
-          <span className='title'>Faktúry</span>
-        <button onClick={() => setShowModal(true)} className="create-invoice-button">
-          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
-          <span className="button-label">Vytvoriť faktúru</span>
-        </button>
-      </div> 
+    <div className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
+    <button className="toggle-button" onClick={toggleSidebar}>
+      <FontAwesomeIcon icon={faBars} className="bars-icon" />
+    </button>
+      { sidebarOpen ? <div className="sidebar-header">
+        <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
+            <span className='title'>Faktúry</span>
+          <button onClick={() => setShowModal(true)} className="create-invoice-button">
+            <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+            <span className="button-label">Vytvoriť faktúru</span>
+          </button>
+        </div> : null
+        }
       <div className="invoice-list">
-        {invoices && invoices.map(item => (
+        {invoices && subset.map(item => (
           <div className="invoice" key={item.id}>
             <div className="invoice-avatar">
               {item.name[0]}
@@ -50,6 +84,15 @@ const SideBar = () => {
           </div>
         ))}
       </div>
+      {invoices.length > 0 ? <Stack direction="row" spacing={2} justifyContent="center" className='pagination'>
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          size="large" 
+        />
+      </Stack> : null
+      }
       {showModal && <CreateInvoice 
         onInvoiceCreated={handleInvoiceCreated}
         showModal={showModal} 
