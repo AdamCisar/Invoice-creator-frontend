@@ -35,3 +35,7 @@
   .create-invoice-button-modal:hover {
     background-color: #525252;
   }
+
+  @media (max-width: 768px) {
+
+  }

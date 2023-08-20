@@ -99,6 +99,10 @@
     width: 250px;
   }
 
+  .sidebar-header {
+    margin-top: 30px;
+  }
+
   .toggle-button {
     background: none;
     border: none;
