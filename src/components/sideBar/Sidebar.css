@@ -84,6 +84,17 @@
   background-color: #2980b9;
 }
 
+.MuiStack-root {
+  margin-left: 10% !important;
+  margin-bottom: 10px !important;
+} 
+
+.custom-link {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 0;

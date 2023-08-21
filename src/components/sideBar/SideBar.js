@@ -6,6 +6,7 @@ import CreateInvoice from '../createInvoice/CreateInvoice';
 import { getInvoices } from '../service/InvoiceService';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,13 +16,7 @@ const SideBar = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const invoicesPerPage = 8;
-
-  useEffect(() => {
-    const loadingTimeout = setTimeout(() => {
-    }, 1350);
-    return () => clearTimeout(loadingTimeout);
-  }, [invoices]);
+  const invoicesPerPage = 7;
 
   useEffect(() => {
     setTotalPages(Math.ceil(invoices.length / invoicesPerPage));
@@ -61,37 +56,46 @@ const SideBar = () => {
     <button className="toggle-button" onClick={toggleSidebar}>
       <FontAwesomeIcon icon={faBars} className="bars-icon" />
     </button>
-      { sidebarOpen ? <div className="sidebar-header">
-        <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
-            <span className='title'>Faktúry</span>
-          <button onClick={() => setShowModal(true)} className="create-invoice-button">
-            <FontAwesomeIcon icon={faPlus} className="plus-icon" />
-            <span className="button-label">Vytvoriť faktúru</span>
-          </button>
-        </div> : null
-        }
-      <div className="invoice-list">
-        {invoices && subset.map(item => (
-          <div className="invoice" key={item.id}>
-            <div className="invoice-avatar">
-              {item.name[0]}
-            </div>
-            <div className="invoice-details">
-              <div className="invoice-name">
-                {item.name}
-              </div>
-            </div>
+      { sidebarOpen ? 
+      <div>
+        <div className="sidebar-header">
+          <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
+              <span className='title'>Faktúry</span>
+            <button onClick={() => setShowModal(true)} className="create-invoice-button">
+              <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+              <span className="button-label">Vytvoriť faktúru</span>
+            </button>
+          </div>  
+          <div className="invoice-list">
+            {invoices && subset.map(item => (
+              <Link to={`/faktura/${item.name}`} key={item.id} className="custom-link invoice-button">
+                <div className="invoice" key={item.id}>
+                  <div className="invoice-avatar">
+                    {item.name[0]}
+                  </div>
+                  <div className="invoice-details">
+                    <div className="invoice-name">
+                      {item.name}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-        ))}
-      </div>
-      {invoices.length > 0 ? <Stack direction="row" spacing={2} justifyContent="center" className='pagination'>
+      {
+      invoices.length > 6 ? 
+      <Stack direction="row" spacing={2} justifyContent="center" className='pagination'>
         <Pagination
           count={totalPages}
           page={currentPage}
           onChange={handlePageChange}
           size="large" 
         />
-      </Stack> : null
+      </Stack> : 
+      null
+      }
+      </div> 
+        : null
       }
       {showModal && <CreateInvoice 
         onInvoiceCreated={handleInvoiceCreated}

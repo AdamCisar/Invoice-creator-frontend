@@ -38,6 +38,14 @@
   background-color: #2980b9;
 }
 
+.search-bar-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
 .Item {
   margin-top: 10px;
 }
@@ -46,6 +54,7 @@
   .search-bar {
     padding: 8px; 
     max-width: 250px;
+    position: fixed;
   }
 
   .search-bar input {
