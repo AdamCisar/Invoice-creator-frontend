@@ -23,27 +23,21 @@ function InvoiceDetails() {
     fetchInvoiceItems(id);
   }, [id]);
 
-  if (!invoiceData) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="invoice-details-container">
       <div className="invoice-content">
         <div className="table-responsive invoice-table">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Názov</th>
-                <th scope="col">Cena</th>
-                <th scope="col">Počet</th>
-              </tr>
-            </thead>
-            {isLoading ? 
-              <div className='loading-spinner'>
-              <LoadingSpinner /> 
-              </div>
-                      :
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Názov</th>
+                  <th scope="col">Cena</th>
+                  <th scope="col">Počet</th>
+                </tr>
+              </thead>
               <tbody>
                 {invoiceData.map((data, index) => (
                   <tr key={index}>
@@ -51,14 +45,15 @@ function InvoiceDetails() {
                     <td>{data.price}</td>
                     <td>{data.pivot.amount}</td>
                     <td className="invoice-actions">
-                      <button type="button" className="btn btn-danger">Odstrániť</button>
+                      <button type="button" className="btn btn-danger">
+                        Odstrániť
+                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
-            }
-            <div/>
-          </table>
+            </table>
+          )}
         </div>
       </div>
     </div>

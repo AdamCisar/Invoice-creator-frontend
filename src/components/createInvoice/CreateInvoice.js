@@ -52,14 +52,14 @@ const CreateInvoice = ({ showModal, setShowModal, onInvoiceCreated }) => {
           <span className="button-label">Vytvoriť faktúru</span>
         </button>
         {message && (
-        <Message
+          <Message
           message={message}
           onClose={() => {
             setMessage('');
             setShowModal(false);
           }}
-      />
-      )}
+          />
+        )}
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>

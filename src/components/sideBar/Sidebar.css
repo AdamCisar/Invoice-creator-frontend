@@ -74,8 +74,8 @@
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease;
-  margin-left: 14%;
-  width: 150px; 
+  margin-left: 50%;
+  width: 125px; 
   font-family: 'Courier New', monospace;
   font-size: 14px; 
 }
@@ -95,10 +95,15 @@
   text-decoration: none;
 }
 
+.invoice-link{
+  font-size: 20px;
+  position: fixed;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 0;
-    transition: width 0.3s ease;
+    transition: width 0.7s ease;
     overflow-x: hidden;
   }
 
@@ -116,7 +121,7 @@
   }
 
   .create-invoice-button {
-    margin-left: 39%;
+    margin-left: 80%;
     width: 14%;
   }
 

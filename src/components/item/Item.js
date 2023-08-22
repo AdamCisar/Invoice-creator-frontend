@@ -26,7 +26,7 @@ const Item = ({ items }) => {
 
   useEffect(() => {
     setTotalPages(Math.ceil(items.length / itemsPerPage));
-  }, [items]);
+  }, [items, itemsPerPage]);
 
   const startIndex = (currentPage - 1) * itemsPerPage; 
   const endIndex = currentPage * itemsPerPage;

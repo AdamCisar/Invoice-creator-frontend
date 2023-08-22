@@ -59,8 +59,10 @@ const SideBar = () => {
       { sidebarOpen ? 
       <div>
         <div className="sidebar-header">
-          <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
-              <span className='title'>Faktúry</span>
+        <Link to="/" className="custom-link invoice-link">
+              <FontAwesomeIcon icon={faFileInvoice} className="invoice-icon" />
+                  <span className='title'>Faktúry</span>
+        </Link>
             <button onClick={() => setShowModal(true)} className="create-invoice-button">
               <FontAwesomeIcon icon={faPlus} className="plus-icon" />
               <span className="button-label">Vytvoriť faktúru</span>

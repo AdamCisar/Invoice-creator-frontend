@@ -23,14 +23,14 @@ const AddItem = ({ showModal, setShowModal, onInvoiceCreated }) => {
         </Modal.Header>
         <Modal.Body>
         {message && (
-        <Message
+          <Message
           message={message}
           onClose={() => {
             setMessage('');
             setShowModal(false);
           }}
-      />
-      )}
+          />
+        )}
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>

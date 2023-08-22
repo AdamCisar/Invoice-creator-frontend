@@ -36,3 +36,18 @@ export const getInvoices = async () => {
         throw error;
         }
     };
+
+  export const deleteInvoice = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}${id}`, {
+            method: "DELETE",
+        });
+    
+        if (!response.ok) {
+            throw new Error("Couldn't delete the invoice!");
+        }
+        } catch (error) {
+        console.log(error.message);
+        throw error;
+        }
+    };
