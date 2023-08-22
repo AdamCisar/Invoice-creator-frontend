@@ -1,0 +1,16 @@
+.action-container {
+    background-color: rgb(0 0 0 / 5%);
+    padding: 10px;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 40px 40px;
+  }
+
+  .action-container button {
+    border: none; 
+    cursor: pointer;
+  }
+  

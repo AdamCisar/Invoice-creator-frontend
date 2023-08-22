@@ -54,7 +54,6 @@
   .search-bar {
     padding: 8px; 
     max-width: 250px;
-    position: fixed;
   }
 
   .search-bar input {

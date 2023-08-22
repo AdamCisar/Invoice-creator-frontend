@@ -5,11 +5,11 @@
     border-right: 1px solid #ccc;
     padding: 20px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s ease;
+    transition: width 0.8s ease;
   }
   
   .sidebar.closed {
-    width: 65px; 
+    width: 65px;
   }
   
   .sidebar-header {
@@ -74,7 +74,7 @@
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease;
-  margin-left: 28%;
+  margin-left: 14%;
   width: 150px; 
   font-family: 'Courier New', monospace;
   font-size: 14px; 
@@ -103,6 +103,7 @@
   }
 
   .sidebar.closed {
+    transition: 1s ease;
     width: 20px; 
   }
 
@@ -112,6 +113,11 @@
 
   .sidebar-header {
     margin-top: 30px;
+  }
+
+  .create-invoice-button {
+    margin-left: 39%;
+    width: 14%;
   }
 
   .toggle-button {
