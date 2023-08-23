@@ -18,3 +18,21 @@ export const saveItemToDatabase = async (item) => {
         throw error;
       }
     };
+
+export const getItems = async () => {
+  try {
+      const response = await fetch(API_URL, {
+          method: "GET",
+      });
+  
+      if (!response.ok) {
+          throw new Error("Couldn't fetch the data!");
+      }
+  
+      const data = await response.json();
+      return data;
+      } catch (error) {
+      console.log(error.message);
+      throw error;
+      }
+  };

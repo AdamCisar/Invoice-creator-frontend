@@ -38,10 +38,6 @@
 
   @media (max-width: 768px) {
 
-    .fade {
-      width: 87% !important;
-    }
-
     .create-invoice-button-modal .button-label {
       display: block; 
     }
