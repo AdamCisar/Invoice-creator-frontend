@@ -17,3 +17,22 @@ export const getInvoiceItems = async ($id) => {
         throw error;
         }
     };
+
+export const saveInvoiceItems = async (invoiceData) => {
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", 
+              },
+            body: JSON.stringify(invoiceData),
+        });
+    
+        if (!response.ok) {
+            throw new Error("Couldn't save the items!");
+        }
+        } catch (error) {
+        console.log(error.message);
+        throw error;
+        }
+    };

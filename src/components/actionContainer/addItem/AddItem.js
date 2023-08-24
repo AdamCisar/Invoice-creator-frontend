@@ -3,12 +3,14 @@ import { Modal } from "react-bootstrap";
 import Message from "../../message/Message";
 import { getItems } from "../../service/ItemService";
 import "./AddItem.css";
+import NumberInput from "../../numberInput/NumberInput";
 
-const AddItem = ({ showModal, setShowModal }) => {
+const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
   const [items, setItems] = useState([]);
   const [message, setMessage] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
+  const [selectedNumber, setSelectedNumber] = useState(1);
 
   useEffect(() => {
     async function fetchItems() {
@@ -35,6 +37,11 @@ const AddItem = ({ showModal, setShowModal }) => {
     } else {
       setFilteredData(newFilter);
     }
+  };
+
+  const handleAddItem = (selectedItem) => {
+    onItemAdded(selectedItem, selectedNumber);
+    setSelectedNumber(1);
   };
 
   return (
@@ -64,11 +71,15 @@ const AddItem = ({ showModal, setShowModal }) => {
       </div>
       {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.slice(0, 15).map((value, key) => {
+          {filteredData.slice(0, 15).map((item, key) => {
             return (
-              <div className="result" key={value.id}>
-                <p>{value.name} </p>
-                <button>Pridať</button> 
+              <div className="result" key={item.id}>
+                <p>{item.name} </p>
+                <NumberInput 
+                  value={selectedNumber}
+                  onChange={(event) => setSelectedNumber(event.target.value)}
+                />
+                <button onClick={() => handleAddItem(item)}>Pridať</button> 
               </div>
             );
           })}

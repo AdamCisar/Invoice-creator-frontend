@@ -1,7 +1,7 @@
 import React from 'react';
-import SideBar from './sideBar/SideBar';
-import SearchBar from './searchBar/SearchBar';
 import './Home.css';
+import SideBar from '../sideBar/SideBar';
+import SearchBar from '../searchBar/SearchBar';
 
 const Home = () => {
 
