@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom';
 import { getInvoiceItems, saveInvoiceItems } from '../service/InvoiceItemService';
 import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import ActionContainer from '../actionContainer/ActionContainer';
+import { Message } from 'semantic-ui-react';
 
 function InvoiceDetails() {
   const { id } = useParams();
   const [invoiceData, setInvoiceData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     async function fetchInvoiceItems(id) {
@@ -45,9 +47,16 @@ function InvoiceDetails() {
     setInvoiceData([...invoiceData, selectedItem]);
   };
 
-  const handleSaveItems = () => {
-    saveInvoiceItems(invoiceData);
-  };
+  const handleSaveItems = async () => {
+    try {
+        setIsLoading(true);
+        await saveInvoiceItems(invoiceData);
+        setMessage('Faktúra bola uložená.'); 
+        setIsLoading(false);
+      } catch (error) {
+        setMessage('Nepodarilo sa uložiť faktúru.');
+      }
+  }
 
   return (
     <div className="Content-Invoice">
@@ -89,6 +98,14 @@ function InvoiceDetails() {
           </div>
         </div>
       </div>
+      {message && (
+          <Message
+          message={message}
+          onClose={() => {
+            setMessage('');
+          }}
+          />
+        )}
     </div>
   );
 }

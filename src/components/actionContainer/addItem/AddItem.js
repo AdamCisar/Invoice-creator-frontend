@@ -11,6 +11,7 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
   const [selectedNumber, setSelectedNumber] = useState(1);
+  
 
   useEffect(() => {
     async function fetchItems() {
@@ -61,21 +62,22 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
         </Modal.Header>
         <Modal.Body>
         <div className="search">
-      <div className="searchInputs">
-        <input
-          type="text"
-          placeholder={"Zadaj názov položky"}
-          value={searchTerm}
-          onChange={handleFilter}
-        />
-      </div>
+          <div className="searchInputs">
+            <input
+              className="custom-input"
+              type="text"
+              placeholder={"Zadaj názov položky"}
+              value={searchTerm}
+              onChange={handleFilter}
+            />
+          </div>
       {filteredData.length !== 0 && (
         <div className="dataResult">
           {filteredData.slice(0, 15).map((item, key) => {
             return (
               <div className="result" key={item.id}>
                 <p>{item.name} </p>
-                <NumberInput 
+                <NumberInput
                   value={selectedNumber}
                   onChange={(event) => setSelectedNumber(event.target.value)}
                 />

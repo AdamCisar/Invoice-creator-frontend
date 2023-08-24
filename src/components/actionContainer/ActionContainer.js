@@ -26,7 +26,7 @@ const ActionContainer = ({ onItemAdded, onSaveItems }) => {
     };
 
     const handleSave = () => {
-      onSaveItems()
+      onSaveItems();
     };
 
   return (

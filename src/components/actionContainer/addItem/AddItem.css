@@ -2,8 +2,30 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start; 
+  width: 120%; 
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
 }
 
+.searchInputs {
+  flex-grow: 1;
+  padding: 8px;
+  border-radius: 30px;
+  margin-right: 10px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.custom-input {
+  border: none; 
+  outline: none; 
+  padding: 5px; 
+}
 .result {
   width: 100%; 
   margin-right: 10px;
@@ -29,5 +51,6 @@
 }
 
 .form-control {
-  width: 15%;
+  width: 15% !important;
+  margin-right: 10px;
 }
