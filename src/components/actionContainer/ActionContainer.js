@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { deleteInvoice } from "../service/InvoiceService";
 import Message from "../message/Message";
 
-const ActionContainer = ({ onItemAdded, onSaveItems }) => {
+const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading}) => {
     const [showModal, setShowModal] = useState(false);
     const [message, setMessage] = useState('');
     const { id } = useParams();
@@ -25,8 +25,15 @@ const ActionContainer = ({ onItemAdded, onSaveItems }) => {
       onItemAdded(selectedItem, selectedNumber);
     };
 
-    const handleSave = () => {
-      onSaveItems();
+    const handleSave = async () => {
+      try {
+        setIsLoading(true);
+        await onSaveItems();
+        setMessage('Faktúra bola uložená.'); 
+        setIsLoading(false);
+      } catch (error) {
+        setMessage('Nepodarilo sa uložiť faktúru.');
+      }
     };
 
   return (

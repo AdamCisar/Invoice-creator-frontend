@@ -41,6 +41,7 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
   };
 
   const handleAddItem = (selectedItem) => {
+    
     onItemAdded(selectedItem, selectedNumber);
     setSelectedNumber(1);
   };

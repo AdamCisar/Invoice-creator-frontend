@@ -30,7 +30,7 @@ function InvoiceDetails() {
 
   useEffect(() => {
     const totalPrice = invoiceData.reduce(
-      (total, item) => total + (item.pivot.amount * parseFloat(item.price.replace(",", "."), 10)),
+      (total, item) => total + (item.pivot.amount * parseFloat(item.price.replace(",", "."), 2)),
       0
     );
 
@@ -39,30 +39,32 @@ function InvoiceDetails() {
   }, [invoiceData]);
 
   const handleAddItem = (selectedItem, selectedNumber) => {
-    selectedItem.pivot = {
-      amount: selectedNumber,
-      invoice_id: Number(id),
-      item_id: selectedItem.id
-    };
-    setInvoiceData([...invoiceData, selectedItem]);
+    if (!isItemInInvoice(selectedItem.id)) {
+      selectedItem.pivot = {
+        amount: selectedNumber,
+        invoice_id: Number(id),
+        item_id: selectedItem.id
+      };
+      setInvoiceData([...invoiceData, selectedItem]);
+    } else {
+      return "Položka sa už nachádza vo faktúre."
+    }
   };
 
   const handleSaveItems = async () => {
-    try {
-        setIsLoading(true);
-        await saveInvoiceItems(invoiceData);
-        setMessage('Faktúra bola uložená.'); 
-        setIsLoading(false);
-      } catch (error) {
-        setMessage('Nepodarilo sa uložiť faktúru.');
-      }
+      await saveInvoiceItems(invoiceData);
   }
 
+  const isItemInInvoice = (itemId) => {
+    return invoiceData.some(item => item.id === itemId);
+  };
+  
   return (
     <div className="Content-Invoice">
       <ActionContainer
         onItemAdded={handleAddItem}
         onSaveItems={handleSaveItems}
+        setIsLoading={setIsLoading}
       />
       <div className="invoice-details-container">
         <div className="invoice-content">
