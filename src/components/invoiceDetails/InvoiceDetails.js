@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import "./InvoiceDetails.css";
-import { useParams } from 'react-router-dom';
-import { getInvoiceItems, saveInvoiceItems } from '../service/InvoiceItemService';
+import { useLocation, useParams } from 'react-router-dom';
+import { deleteInvoiceItem, getInvoiceItems, saveInvoiceItems } from '../service/InvoiceItemService';
 import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import ActionContainer from '../actionContainer/ActionContainer';
 import { Message } from 'semantic-ui-react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-function InvoiceDetails() {
+function InvoiceDetails(props) {
+  const location = useLocation();
+  const invoice = location.state?.invoice;
   const { id } = useParams();
+
   const [invoiceData, setInvoiceData] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [message, setMessage] = useState('');
+
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const isPhone = window.innerWidth <= 800;
+  const itemsPerPage = isPhone ? 5 : 10;
 
   useEffect(() => {
     async function fetchInvoiceItems(id) {
@@ -27,6 +40,18 @@ function InvoiceDetails() {
     
     fetchInvoiceItems(id);
   }, [id]);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(invoiceData.length / itemsPerPage));
+  }, [invoiceData]);
+
+  const startIndex = (currentPage - 1) * itemsPerPage; 
+  const endIndex = currentPage * itemsPerPage;
+  const subset = invoiceData.slice(startIndex, endIndex);
+
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
 
   useEffect(() => {
     const totalPrice = invoiceData.reduce(
@@ -55,10 +80,34 @@ function InvoiceDetails() {
       await saveInvoiceItems(invoiceData);
   }
 
+  const handleDelete = async (itemId) => {
+    const data = {
+      invoice_id: id,
+      item_id: itemId
+    }
+    await deleteInvoiceItem(data);
+    const updatedInvoiceData = invoiceData.filter(item => item.id !== itemId);
+    setInvoiceData(updatedInvoiceData);
+  }
+
   const isItemInInvoice = (itemId) => {
     return invoiceData.some(item => item.id === itemId);
   };
-  
+
+  const handleIncreaseAmount = (itemId) => {
+    const updatedData = invoiceData.map((item) =>
+      item.id === itemId ? { ...item, pivot: { ...item.pivot, amount: item.pivot.amount + 1 } } : item
+    );
+    setInvoiceData(updatedData);
+  };
+
+  const handleDecreaseAmount = (itemId) => {
+    const updatedData = invoiceData.map((item) =>
+      item.id === itemId && item.pivot.amount > 1 ? { ...item, pivot: { ...item.pivot, amount: item.pivot.amount - 1 } } : item
+    );
+    setInvoiceData(updatedData);
+  };
+
   return (
     <div className="Content-Invoice">
       <ActionContainer
@@ -68,6 +117,9 @@ function InvoiceDetails() {
       />
       <div className="invoice-details-container">
         <div className="invoice-content">
+          <div className="invoice-data">
+            Názov: {invoice.name}
+          </div>
           <div className="total-price">Celková suma: {totalPrice} €</div>
           <div className="table-responsive invoice-table">
             {isLoading ? (
@@ -82,13 +134,29 @@ function InvoiceDetails() {
                   </tr>
                 </thead>
                 <tbody>
-                  {invoiceData.map((data, index) => (
+                  {subset.map((data, index) => (
                     <tr key={index}>
                       <td>{data.name}</td>
                       <td>{data.price}</td>
-                      <td>{data.pivot.amount}</td>
+                      <td>
+                        <i
+                          type="button"
+                          className="bi bi-minus"
+                          onClick={() => handleDecreaseAmount(data.id)}
+                        >
+                          -
+                        </i>
+                        {data.pivot.amount}
+                        <i
+                          type="button"
+                          className="bi bi-plus"
+                          onClick={() => handleIncreaseAmount(data.id)}
+                        >
+                          +
+                        </i>
+                      </td>
                       <td className="invoice-actions">
-                        <button type="button" className="btn btn-danger">
+                        <button type="button" className="btn btn-danger" onClick={() => handleDelete(data.id)}>
                           Odstrániť
                         </button>
                       </td>
@@ -100,6 +168,18 @@ function InvoiceDetails() {
           </div>
         </div>
       </div>
+      {
+      invoiceData.length > 10 ? 
+      <Stack direction="row" spacing={2} justifyContent="center" className='pagination'>
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          size="large" 
+        />
+      </Stack> : 
+      null
+      }
       {message && (
           <Message
           message={message}

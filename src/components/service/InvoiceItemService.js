@@ -36,3 +36,22 @@ export const saveInvoiceItems = async (invoiceData) => {
         throw error;
         }
     };
+
+export const deleteInvoiceItem = async (data) => {
+    try {
+        const response = await fetch(API_URL, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json", 
+                },
+            body: JSON.stringify(data),
+        });
+    
+        if (!response.ok) {
+            throw new Error("Couldn't delete the item!");
+        }
+        } catch (error) {
+        console.log(error.message);
+        throw error;
+        }
+    };

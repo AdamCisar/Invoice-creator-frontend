@@ -2,8 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start; 
-  width: 120%; 
-  max-width: 400px;
+  width: 100%; 
   display: flex;
   align-items: center;
   padding: 10px;
@@ -25,8 +24,10 @@
   border: none; 
   outline: none; 
   padding: 5px; 
+  width: 100%;
 }
 .result {
+  border-radius: 30px;
   width: 100%; 
   margin-right: 10px;
   margin-bottom: 10px;
@@ -43,6 +44,7 @@
 }
 
 .result button {
+  border-radius: 30px;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -51,6 +53,7 @@
 }
 
 .form-control {
-  width: 15% !important;
+  border-radius: 30px !important;
+  width: 20% !important;
   margin-right: 10px;
 }

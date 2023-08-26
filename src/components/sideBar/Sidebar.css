@@ -78,7 +78,7 @@
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease;
-  margin-left: 50%;
+  margin-left: 52px;
   width: 125px; 
   font-family: 'Courier New', monospace;
   font-size: 14px; 
@@ -100,8 +100,18 @@
 }
 
 .invoice-link{
+    display: flex;
+    align-items: center; 
+    text-decoration: none;
+}
+
+.invoice-icon {
+  margin-right: 5px; 
+}
+
+.title {
   font-size: 20px;
-  position: fixed;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -118,6 +128,9 @@
 
   .sidebar.open {
     width: 250px;
+    position: absolute;
+    z-index: 2; 
+    overflow: visible;
   }
 
   .sidebar-header {
@@ -125,7 +138,7 @@
   }
 
   .create-invoice-button {
-    margin-left: 80%;
+    margin-left: 50%;
     width: 14%;
   }
 

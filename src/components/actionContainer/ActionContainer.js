@@ -22,7 +22,7 @@ const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading}) => {
     }
 
     const handleAddItem = (selectedItem, selectedNumber) => {
-      onItemAdded(selectedItem, selectedNumber);
+      return onItemAdded(selectedItem, selectedNumber);
     };
 
     const handleSave = async () => {
@@ -41,11 +41,11 @@ const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading}) => {
       <button  onClick={() => setShowModal(true)}>
         <FontAwesomeIcon icon={faSquarePlus} style={{ fontSize: "40px", color: "#3498db" }} />
       </button>
-      <button className="btn btn-danger mx-2">
-        <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(id)} />
-      </button>
       <button className="btn btn-secondary mx-2">
         <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSave} />
+      </button>
+      <button className="btn btn-danger mx-2">
+        <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(id)} />
       </button>
       {showModal && <AddItem 
         showModal={showModal} 

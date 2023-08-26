@@ -1,7 +1,32 @@
 .total-price {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: bold;
+}
+
+.invoice-data {
+  position: absolute;
+  top: 20px;
+  font-weight: bold;
+}
+
+.bi {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .total-price, .invoice-data {
+    display: none;
   }
-  
+  bi bi-minus{
+    margin-top: 20px;
+  }
+
+  .invoice-table i.bi {
+    margin-left: 2px; 
+    margin-right: 2px; 
+    display: inline-block; 
+  }
+}

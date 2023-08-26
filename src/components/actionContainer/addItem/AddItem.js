@@ -42,8 +42,9 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
 
   const handleAddItem = (selectedItem) => {
     
-    onItemAdded(selectedItem, selectedNumber);
+    const alreadyExists = onItemAdded(selectedItem, selectedNumber);
     setSelectedNumber(1);
+    setMessage(alreadyExists);
   };
 
   return (
@@ -94,7 +95,6 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
           message={message}
           onClose={() => {
             setMessage('');
-            setShowModal(false);
           }}
           />
         )}

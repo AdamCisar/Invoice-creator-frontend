@@ -70,7 +70,9 @@ const SideBar = () => {
           </div>  
           <div className="invoice-list">
             {invoices && subset.map(item => (
-              <Link to={`/faktura/${item.id}`} key={item.id} className="custom-link invoice-button">
+              <Link to={`/faktura/${item.id}`} state={{invoice: item}}
+                key={item.id} 
+                className="custom-link invoice-button">
                 <div className="invoice" key={item.id}>
                   <div className="invoice-avatar">
                     {item.name[0]}
