@@ -8,7 +8,7 @@ import { Message } from 'semantic-ui-react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-function InvoiceDetails(props) {
+function InvoiceDetails() {
   const location = useLocation();
   const invoice = location.state?.invoice;
   const { id } = useParams();
@@ -136,7 +136,7 @@ function InvoiceDetails(props) {
                 <tbody>
                   {subset.map((data, index) => (
                     <tr key={index}>
-                      <td>{data.name}</td>
+                      <td> <a className='link'  href={data.url}> {data.name} </a></td>
                       <td>{data.price}</td>
                       <td>
                         <i

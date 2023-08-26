@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/api/invoice-item/";
+const API_URL = "http://192.168.0.52:8000/api/invoice-item/";
 
 export const getInvoiceItems = async ($id) => {
     try {

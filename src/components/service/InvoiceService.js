@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000/api/invoice/";
+// const API_URL = "http://127.0.0.1:8000/api/invoice/";
+const API_URL = "http://192.168.0.52:8000/api/invoice/";
 
 export const createInvoice= async (invoice) => {
     try {
@@ -9,10 +10,11 @@ export const createInvoice= async (invoice) => {
           },
           body: JSON.stringify(invoice),
         });
-    
         if (!response.ok) {
           throw new Error("Couldn't save the invoice!");
         }
+
+        return response.json();
       } catch (error) {
         console.log(error.message);
         throw error;

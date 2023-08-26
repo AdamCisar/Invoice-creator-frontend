@@ -17,9 +17,10 @@ const CreateInvoice = ({ showModal, setShowModal, onInvoiceCreated }) => {
         name: invoiceName
       };
     try {
-        await createInvoice(invoiceData);
+        const invoice = await createInvoice(invoiceData);
         setMessage('Faktúra bola úspešne vytvorená.'); 
-        onInvoiceCreated(invoiceData);
+        console.log(invoice)
+        onInvoiceCreated(invoice);
         setInvoiceName("");
     } catch (error) {
         setMessage('Nepodarilo sa vytvoriť faktúru.');

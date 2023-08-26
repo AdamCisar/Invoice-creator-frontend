@@ -78,7 +78,7 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
           {filteredData.slice(0, 15).map((item, key) => {
             return (
               <div className="result" key={item.id}>
-                <p>{item.name} </p>
+                <a className="link" href={item.url}>{item.name} </a>
                 <NumberInput
                   value={selectedNumber}
                   onChange={(event) => setSelectedNumber(event.target.value)}

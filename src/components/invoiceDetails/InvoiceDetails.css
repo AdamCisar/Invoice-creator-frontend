@@ -16,6 +16,15 @@
   margin-right: 8px;
 }
 
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  color:rgb(52, 152, 219);
+}
+
 @media (max-width: 768px) {
   .total-price, .invoice-data {
     display: none;

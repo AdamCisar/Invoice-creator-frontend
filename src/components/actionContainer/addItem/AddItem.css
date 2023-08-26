@@ -57,3 +57,12 @@
   width: 20% !important;
   margin-right: 10px;
 }
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  color:rgb(52, 152, 219);
+}
