@@ -19,7 +19,6 @@ const CreateInvoice = ({ showModal, setShowModal, onInvoiceCreated }) => {
     try {
         const invoice = await createInvoice(invoiceData);
         setMessage('Faktúra bola úspešne vytvorená.'); 
-        console.log(invoice)
         onInvoiceCreated(invoice);
         setInvoiceName("");
     } catch (error) {

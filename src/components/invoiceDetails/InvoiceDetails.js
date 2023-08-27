@@ -43,7 +43,7 @@ function InvoiceDetails() {
 
   useEffect(() => {
     setTotalPages(Math.ceil(invoiceData.length / itemsPerPage));
-  }, [invoiceData]);
+  }, [invoiceData, itemsPerPage]);
 
   const startIndex = (currentPage - 1) * itemsPerPage; 
   const endIndex = currentPage * itemsPerPage;
@@ -108,12 +108,17 @@ function InvoiceDetails() {
     setInvoiceData(updatedData);
   };
 
+  const handleDownload = () => {
+      console.log(invoice, invoiceData)
+  }
+
   return (
     <div className="Content-Invoice">
       <ActionContainer
         onItemAdded={handleAddItem}
         onSaveItems={handleSaveItems}
         setIsLoading={setIsLoading}
+        handleDownload={handleDownload}
       />
       <div className="invoice-details-container">
         <div className="invoice-content">

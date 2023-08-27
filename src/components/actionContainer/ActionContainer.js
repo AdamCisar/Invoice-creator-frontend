@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./ActionContainer.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFloppyDisk, faSquarePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faFloppyDisk, faSquarePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "./addItem/AddItem";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteInvoice } from "../service/InvoiceService";
 import Message from "../message/Message";
 
-const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading}) => {
+const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading, handleDownload}) => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [message, setMessage] = useState('');
@@ -45,11 +45,14 @@ const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading}) => {
       <button  onClick={() => setShowModal(true)}>
         <FontAwesomeIcon icon={faSquarePlus} style={{ fontSize: "40px", color: "#3498db" }} />
       </button>
-      <button className="btn btn-secondary mx-2">
-        <FontAwesomeIcon icon={faFloppyDisk} onClick={handleSave} />
+      <button className="btn btn-secondary mx-2" onClick={handleSave} >
+        <FontAwesomeIcon icon={faFloppyDisk} />
       </button>
-      <button className="btn btn-danger mx-2">
-        <FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(id)} />
+      <button className="btn btn-danger mx-2" onClick={() => handleDelete(id)} >
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
+      <button className="btn btn-success mx-2" onClick={handleDownload} >
+        <FontAwesomeIcon icon={faDownload} />
       </button>
       {showModal && <AddItem 
         showModal={showModal} 
