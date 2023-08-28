@@ -1,4 +1,4 @@
-const API_URL =  "http://192.168.0.52:8000/api/download-invoice/";
+const API_URL =  "http://192.168.0.52:8000/api/invoice-download/";
 
 export const getPdf = async (id) => {
     try {
