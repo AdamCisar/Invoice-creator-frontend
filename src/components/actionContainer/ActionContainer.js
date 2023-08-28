@@ -51,7 +51,7 @@ const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading, handleDownloa
       <button className="btn btn-danger mx-2" onClick={() => handleDelete(id)} >
         <FontAwesomeIcon icon={faTrash} />
       </button>
-      <button className="btn btn-success mx-2" onClick={handleDownload} >
+      <button className="btn btn-success mx-2" onClick={() => handleDownload(id)} >
         <FontAwesomeIcon icon={faDownload} />
       </button>
       {showModal && <AddItem 

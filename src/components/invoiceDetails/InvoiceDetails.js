@@ -7,6 +7,7 @@ import ActionContainer from '../actionContainer/ActionContainer';
 import { Message } from 'semantic-ui-react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { getPdf } from '../service/PdfService';
 
 function InvoiceDetails() {
   const location = useLocation();
@@ -108,8 +109,8 @@ function InvoiceDetails() {
     setInvoiceData(updatedData);
   };
 
-  const handleDownload = () => {
-      console.log(invoice, invoiceData)
+  const handleDownload = async (id) => {
+    await getPdf(id);
   }
 
   return (
