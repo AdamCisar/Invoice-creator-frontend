@@ -1,4 +1,3 @@
 
-
-https://github.com/AdamCisar/Invoice-creator-frontend/assets/113993988/8014a376-6c62-4dc3-90b1-3736052686f7
+https://github.com/AdamCisar/Invoice-creator-frontend/assets/113993988/4da7bc47-4311-4d11-8a00-07bdc3a91cd8
 
