@@ -116,21 +116,25 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 0;
-    transition: width 0.7s ease;
-    overflow-x: hidden;
+    height: auto; 
+    box-shadow: none;
+    color: transparent;
   }
 
   .sidebar.closed {
-    transition: 1s ease;
-    width: 20px; 
+    width: 50px;
+    border: none;
+    position: fixed;
+    border-radius: 30%;
+    margin-left: 6px;
+    border-radius: 0 0 40px 40px;
+    height: 62.6px; 
   }
 
   .sidebar.open {
     width: 250px;
     position: absolute;
-    z-index: 2; 
-    overflow: visible;
+    border-radius: 0 0 40px 40px;
   }
 
   .sidebar-header {
@@ -151,5 +155,14 @@
     top: 10px;
     left: 10px;
     z-index: 2;
+    transition: left 0.7s ease;
+  }
+
+  .sidebar.open .toggle-button {
+    left: 83%; 
+  }
+
+  .sidebar.closed .toggle-button {
+    left: 10px;
   }
 }

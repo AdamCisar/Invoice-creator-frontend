@@ -52,6 +52,7 @@
 
 @media (max-width: 768px) {
   .search-bar {
+    margin: 0 auto;
     padding: 8px; 
     max-width: 250px;
   }

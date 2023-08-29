@@ -14,3 +14,12 @@
     cursor: pointer;
   }
   
+  .invoice-navigate-button{
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .action-container {
+      width: 80%;
+    }
+  }

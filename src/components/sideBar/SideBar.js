@@ -53,9 +53,9 @@ const SideBar = () => {
   
   return (
     <div className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
-    <button className="toggle-button" onClick={toggleSidebar}>
-      <FontAwesomeIcon icon={faBars} className="bars-icon" />
-    </button>
+      <button className="toggle-button" onClick={toggleSidebar}>
+        <FontAwesomeIcon icon={faBars} className="bars-icon" />
+      </button>
       { sidebarOpen ? 
       <div>
         <div className="sidebar-header">

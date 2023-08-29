@@ -25,6 +25,10 @@
   color:rgb(52, 152, 219);
 }
 
+.pagination {
+  margin: 0 auto !important;
+}
+
 @media (max-width: 768px) {
   .total-price, .invoice-data {
     display: none;

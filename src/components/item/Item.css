@@ -101,14 +101,14 @@
 }
 
 .pagination {
-  margin-left: 50%;
+  margin: 0 auto !important;
 }
 
 @media (max-width: 768px) {
   .card-container {
     width: 60%; 
-    margin-top: 10%;
-    margin-left: -7%; 
+    margin-top: 5%;
+    margin-left: 6%; 
   }
 
   .card {
@@ -137,10 +137,6 @@
   a.url {
     width: auto; 
     font-size: 12px; 
-  }
-
-  .pagination {
-    width: 100%;
   }
 
   .card__hover-content {
