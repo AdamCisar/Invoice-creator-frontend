@@ -8,6 +8,8 @@ import { Message } from 'semantic-ui-react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { getPdf } from '../service/PdfService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function InvoiceDetails() {
   const location = useLocation();
@@ -25,7 +27,7 @@ function InvoiceDetails() {
   const [totalPages, setTotalPages] = useState(0);
 
   const isPhone = window.innerWidth <= 800;
-  const itemsPerPage = isPhone ? 5 : 10;
+  const itemsPerPage = isPhone ? invoiceData.length : 10;
 
   useEffect(() => {
     async function fetchInvoiceItems(id) {
@@ -145,21 +147,11 @@ function InvoiceDetails() {
                       <td> <a className='link'  href={data.url}> {data.name} </a></td>
                       <td>{data.price}</td>
                       <td>
-                        <i
-                          type="button"
-                          className="bi bi-minus"
-                          onClick={() => handleDecreaseAmount(data.id)}
-                        >
-                          -
-                        </i>
-                        {data.pivot.amount}
-                        <i
-                          type="button"
-                          className="bi bi-plus"
-                          onClick={() => handleIncreaseAmount(data.id)}
-                        >
-                          +
-                        </i>
+                        <div className='amount-container'>
+                        <FontAwesomeIcon icon={faArrowDown} onClick={() => handleDecreaseAmount(data.id)}/>
+                        <p className='amount'>{data.pivot.amount}</p>
+                        <FontAwesomeIcon icon={faArrowUp} onClick={() => handleIncreaseAmount(data.id)}/>
+                        </div>
                       </td>
                       <td className="invoice-actions">
                         <button type="button" className="btn btn-danger" onClick={() => handleDelete(data.id)}>

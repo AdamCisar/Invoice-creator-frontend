@@ -29,10 +29,32 @@
   margin: 0 auto !important;
 }
 
-@media (max-width: 768px) {
+.amount-container {
+  display: flex;
+  align-items: center;
+}
+
+.amount {
+  margin: 0 10px; 
+}
+
+.amount-container .svg-inline--fa {
+  cursor: pointer;
+}
+
+.amount-container .svg-inline--fa:hover {
+  color: rgb(52, 152, 219);
+}
+
+@media (max-width: 935px) {
   .total-price, .invoice-data {
     display: none;
   }
+
+  tbody {
+    height: 30px !important;
+  }
+
   bi bi-minus{
     margin-top: 20px;
   }

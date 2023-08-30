@@ -18,7 +18,7 @@
     display: none;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 935px) {
     .action-container {
       width: 80%;
     }

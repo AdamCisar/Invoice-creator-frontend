@@ -114,11 +114,12 @@
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 935px) {
   .sidebar {
     height: auto; 
     box-shadow: none;
     color: transparent;
+    z-index: 1;
   }
 
   .sidebar.closed {
@@ -133,7 +134,7 @@
 
   .sidebar.open {
     width: 250px;
-    position: absolute;
+    position: fixed;
     border-radius: 0 0 40px 40px;
     transition: none;
   }

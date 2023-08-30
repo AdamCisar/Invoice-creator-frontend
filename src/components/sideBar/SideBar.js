@@ -26,9 +26,31 @@ const SideBar = () => {
   const endIndex = currentPage * invoicesPerPage;
   const subset = invoices.slice(startIndex, endIndex);
 
+  const [isPhone, setIsPhone] = useState(window.innerWidth <= 935);
+
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);
   };
+
+  useEffect(() => {
+    if (isPhone) {
+      if (sidebarOpen) {
+        const handleOutsideClick = (event) => {
+          const sidebar = document.querySelector('.sidebar');
+          if (sidebar && !sidebar.contains(event.target)) {
+            setSidebarOpen(false);
+          }
+        };
+  
+        document.addEventListener('click', handleOutsideClick);
+  
+        return () => {
+          document.removeEventListener('click', handleOutsideClick);
+        };
+      }
+    }
+  }, [sidebarOpen, isPhone]);
+  
 
   useEffect(() => {
     async function fetchInvoices() {
@@ -70,7 +92,7 @@ const SideBar = () => {
           </div>  
           <div className="invoice-list">
             {invoices && subset.map(item => (
-              <Link to={`/faktura/${item.id}`} state={{invoice: item}}
+              <Link to={`/faktura/${item.id}`} state={{invoice: item}} onClick={toggleSidebar}
                 key={item.id} 
                 className="custom-link invoice-button">
                 <div className="invoice" key={item.id}>

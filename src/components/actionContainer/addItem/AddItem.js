@@ -87,7 +87,7 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
               </div>
             );
           })}
-        </div>
+        </div> 
       )}
     </div>
         {message && (

@@ -36,7 +36,7 @@
     background-color: #525252;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 935px) {
 
     .create-invoice-button-modal .button-label {
       display: block; 
