@@ -106,9 +106,9 @@
 
 @media (max-width: 935px) {
   .card-container {
-    width: 60%; 
+    width: 80%; 
     margin-top: 5%;
-    margin-left: 6%; 
+    margin-left: -10%; 
   }
 
   .card {
@@ -123,7 +123,6 @@
   }
 
   .card__content {
-    flex-direction: column; 
     align-items: center; 
     padding-right: 0; 
     margin-bottom: 20px;
@@ -131,7 +130,6 @@
 
   .card__title a {
     font-size: 12px; 
-    text-align: center;
   }
 
   a.url {
@@ -142,13 +140,13 @@
   .card__hover-content {
     display: block;
     margin-bottom: 10px; 
-    width: 20px; 
-    height: 20px; 
+    width: 40px; 
+    height: 25px; 
   }
 
   .card__button {
-    width: 20px; 
-    height: 20px; 
+    width: 40px; 
+    height: 25px; 
     font-size: 10px; 
     padding: 2px 5px; 
   }

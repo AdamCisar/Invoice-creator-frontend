@@ -12,7 +12,7 @@ const Item = ({ items }) => {
   const [totalPages, setTotalPages] = useState(0);
 
   const isPhone = window.innerWidth <= 800;
-  const itemsPerPage = isPhone ? 3 : 4;
+  const itemsPerPage = isPhone ? 4 : 4;
 
   const [message, setMessage] = useState('');
 
