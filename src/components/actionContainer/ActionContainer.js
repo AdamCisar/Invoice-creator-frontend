@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "./ActionContainer.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faFloppyDisk, faSquarePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faFloppyDisk, faPenToSquare, faSquarePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "./addItem/AddItem";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteInvoice } from "../service/InvoiceService";
 import Message from "../message/Message";
 import { Tooltip } from "@mui/material";
+import CreateItem from "./createItem/CreateItem";
 
 const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading, handleDownload}) => {
     const navigate = useNavigate();
-    const [showModal, setShowModal] = useState(false);
+    const [showModalAddItem, setShowModalAddItem] = useState(false);
+    const [showModalCreateItem, setShowModalCreateItem] = useState(false);
     const [message, setMessage] = useState('');
     const [actionType, setActionType] = useState(null);
     const { id } = useParams();
@@ -44,8 +46,13 @@ const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading, handleDownloa
   return (
     <div className="action-container text-center">
       <Tooltip title="Pridať položku">
-        <button  onClick={() => setShowModal(true)}>
+        <button  onClick={() => setShowModalAddItem(true)}>
           <FontAwesomeIcon icon={faSquarePlus} style={{ fontSize: "40px", color: "#3498db" }} />
+        </button>
+      </Tooltip>
+      <Tooltip title="Vytvoriť položku">
+        <button onClick={() => setShowModalCreateItem(true)}>
+          <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: "30px", color: "#1e3050" }}/>
         </button>
       </Tooltip>
       <Tooltip title="Uložiť faktúru">
@@ -63,9 +70,15 @@ const ActionContainer = ({ onItemAdded, onSaveItems, setIsLoading, handleDownloa
           <FontAwesomeIcon icon={faDownload} />
         </button>
       </Tooltip>
-      {showModal && <AddItem 
-        showModal={showModal} 
-        setShowModal={setShowModal}
+      {showModalAddItem && <AddItem 
+        showModal={showModalAddItem} 
+        setShowModal={setShowModalAddItem}
+        onItemAdded={handleAddItem}
+        />
+      }
+      {showModalCreateItem && <CreateItem 
+        showModal={showModalCreateItem} 
+        setShowModal={setShowModalCreateItem}
         onItemAdded={handleAddItem}
         />
       }

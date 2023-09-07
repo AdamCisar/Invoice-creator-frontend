@@ -1,0 +1,45 @@
+.modal-body-item {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+.item-input {
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 10px;
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+
+  .create-item-button-modal{
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 8px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    margin-left: 10%;
+    width: 150px; 
+    font-family: 'Courier New', monospace;
+    font-size: 14px; 
+    margin: 0 auto !important;
+  }
+
+  .create-item-button-modal:hover {
+    background-color: #525252;
+  }
+
+  @media (max-width: 935px) {
+
+    .create-item-button-modal .button-label {
+      display: block; 
+    }
+  }
