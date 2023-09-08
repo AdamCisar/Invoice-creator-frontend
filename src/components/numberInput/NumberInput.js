@@ -6,7 +6,6 @@ const NumberInput = ({ value, onChange }) => {
     <Form.Control
       type="number"
       min={1}
-      max={99}
       value={value}
       onChange={onChange}
     />

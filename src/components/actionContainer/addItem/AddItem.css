@@ -44,7 +44,7 @@
 }
 
 .result button {
-  margin-left: 5% !important;
+  left: 30% !important;
   border-radius: 30px;
   background-color: #007bff;
   color: #fff;
@@ -54,11 +54,11 @@
 }
 
 .input-number {
-  width: 50%;
+  width: 80px !important;
+  margin-right: 10px;
 }
 
 .form-control {
-  width: 100% !important;
   border-radius: 30px !important;
 }
 

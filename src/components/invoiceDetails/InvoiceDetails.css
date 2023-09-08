@@ -35,7 +35,7 @@
 }
 
 .invoice-details-amount{
-  width: 30%;
+  width: 80px;
 }
 
 .amount-container .svg-inline--fa {
@@ -44,6 +44,10 @@
 
 .amount-container .svg-inline--fa:hover {
   color: rgb(52, 152, 219);
+}
+
+.pc-hide {
+  display: none;
 }
 
 @media (max-width: 935px) {
@@ -63,5 +67,21 @@
     margin-left: 2px; 
     margin-right: 2px; 
     display: inline-block; 
+  }
+
+  .invoice-details-amount{
+    width: 65px;
+  }
+
+  .mobile-hide {
+    display: none; 
+  }
+
+  .mobile-show {
+    display: block;
+  }
+  
+  .invoice-actions .btn:before {
+    content: 'X';
   }
 }

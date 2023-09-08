@@ -134,6 +134,7 @@ function InvoiceDetails() {
                     <th scope="col">Názov</th>
                     <th scope="col">Cena</th>
                     <th scope="col">Počet</th>
+                    <th className='mobile-hide' scope="col">Jednotka</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -149,12 +150,12 @@ function InvoiceDetails() {
                             onChange={(event) => handleIncreaseDecreaseAmount(data.id, event.target.value)}
                           />
                           </div>
-                          <p>ks/m</p>
                         </div>
                       </td>
+                      <td className='mobile-hide' >ks/m</td>
                       <td className="invoice-actions">
                         <button type="button" className="btn btn-danger" onClick={() => handleDelete(data.id)}>
-                          Odstrániť
+                          <span className="mobile-hide">Odstrániť</span>
                         </button>
                       </td>
                     </tr>
@@ -162,6 +163,7 @@ function InvoiceDetails() {
                 </tbody>
               </table>
             )}
+            <div className="pc-hide mobile-show" style={{ fontWeight: "bold", textDecoration: "underline"}} > Celková suma: {totalPrice} €</div>
           </div>
         </div>
       </div>
