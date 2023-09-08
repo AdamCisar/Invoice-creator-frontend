@@ -1,10 +1,5 @@
 .search {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start; 
   width: 100%; 
-  display: flex;
-  align-items: center;
   padding: 10px;
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -27,8 +22,8 @@
   width: 100%;
 }
 .result {
+  width: 100%;
   border-radius: 30px;
-  width: 100%; 
   margin-right: 10px;
   margin-bottom: 10px;
   display: flex;
@@ -43,7 +38,13 @@
   margin: 0;
 }
 
+.button-sector {
+  display: flex;
+  flex-direction: row;
+}
+
 .result button {
+  margin-left: 5% !important;
   border-radius: 30px;
   background-color: #007bff;
   color: #fff;
@@ -52,10 +53,13 @@
   cursor: pointer;
 }
 
+.input-number {
+  width: 50%;
+}
+
 .form-control {
+  width: 100% !important;
   border-radius: 30px !important;
-  width: 20% !important;
-  margin-right: 10px;
 }
 
 .link {

@@ -79,11 +79,15 @@ const AddItem = ({ showModal, setShowModal, onItemAdded }) => {
             return (
               <div className="result" key={item.id}>
                 <a className="link" href={item.url}>{item.name} </a>
-                <NumberInput
-                  value={selectedNumber}
-                  onChange={(event) => setSelectedNumber(event.target.value)}
-                />
-                <button onClick={() => handleAddItem(item)}>Pridať</button> 
+                <div className="button-sector">
+                  <div className="input-number">
+                    <NumberInput
+                      value={selectedNumber}
+                      onChange={(event) => setSelectedNumber(event.target.value)}
+                    />
+                  </div>
+                  <button onClick={() => handleAddItem(item)}>Pridať</button> 
+                </div>
               </div>
             );
           })}

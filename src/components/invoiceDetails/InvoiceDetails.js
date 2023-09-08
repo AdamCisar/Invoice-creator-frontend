@@ -8,8 +8,7 @@ import { Message } from 'semantic-ui-react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { getPdf } from '../service/PdfService';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import NumberInput from '../numberInput/NumberInput';
 
 function InvoiceDetails() {
   const location = useLocation();
@@ -97,17 +96,13 @@ function InvoiceDetails() {
     return invoiceData.some(item => item.id === itemId);
   };
 
-  const handleIncreaseAmount = (itemId) => {
-    const updatedData = invoiceData.map((item) =>
-      item.id === itemId ? { ...item, pivot: { ...item.pivot, amount: item.pivot.amount + 1 } } : item
-    );
-    setInvoiceData(updatedData);
-  };
-
-  const handleDecreaseAmount = (itemId) => {
-    const updatedData = invoiceData.map((item) =>
-      item.id === itemId && item.pivot.amount > 1 ? { ...item, pivot: { ...item.pivot, amount: item.pivot.amount - 1 } } : item
-    );
+  const handleIncreaseDecreaseAmount = (itemId, amount) => {
+    const updatedData = invoiceData.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, pivot: { ...item.pivot, amount: amount } };
+      }
+      return item;
+    });
     setInvoiceData(updatedData);
   };
 
@@ -148,9 +143,13 @@ function InvoiceDetails() {
                       <td>{data.price}</td>
                       <td>
                         <div className='amount-container'>
-                        <FontAwesomeIcon icon={faArrowDown} onClick={() => handleDecreaseAmount(data.id)}/>
-                        <p className='amount'>{data.pivot.amount}</p>
-                        <FontAwesomeIcon icon={faArrowUp} onClick={() => handleIncreaseAmount(data.id)}/>
+                        <div className="invoice-details-amount">
+                          <NumberInput
+                            value={data.pivot.amount}
+                            onChange={(event) => handleIncreaseDecreaseAmount(data.id, event.target.value)}
+                          />
+                          </div>
+                          <p>ks/m</p>
                         </div>
                       </td>
                       <td className="invoice-actions">

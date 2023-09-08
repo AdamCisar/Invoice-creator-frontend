@@ -34,8 +34,8 @@
   align-items: center;
 }
 
-.amount {
-  margin: 0 10px; 
+.invoice-details-amount{
+  width: 30%;
 }
 
 .amount-container .svg-inline--fa {
