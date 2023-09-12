@@ -3,23 +3,46 @@ import { Modal } from "react-bootstrap";
 import Message from "../../message/Message";
 import "./CreateItem.css";
 import { saveItemToDatabase } from "../../service/ItemService";
+import CustomCheckbox from "./customCheckBox/CustomCheckBox";
+import { useParams } from "react-router-dom";
+import { saveCustomItem } from "../../service/CustomItemService";
 
 const CreateItem = ({ showModal, setShowModal }) => {
   const [message, setMessage] = useState('');
+  const [isChecked, setIsChecked] = useState(true);
+
+  const { id } = useParams();
 
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
+  const [itemAmount, setItemAmount] = useState("");
 
   const handleSubmit = async () => {
-    const itemData = {
+    if(!isChecked)
+    {
+      const itemData = {
+          name: itemName,
+          price: itemPrice
+        };
+      try {
+          await saveItemToDatabase(itemData);
+          setMessage('Položka bola úspešne vytvorená.'); 
+      } catch (error) {
+          setMessage('Položku sa nepodarilo vytvoriť.');
+      }
+    }else{
+      const itemData = {
         name: itemName,
-        price: itemPrice
+        price: itemPrice,
+        amount: itemAmount,
+        invoice_id: id
       };
     try {
-        const item = await saveItemToDatabase(itemData);
+        await saveCustomItem(itemData);
         setMessage('Položka bola úspešne vytvorená.'); 
     } catch (error) {
         setMessage('Položku sa nepodarilo vytvoriť.');
+    }
     }
   }
 
@@ -29,6 +52,10 @@ const CreateItem = ({ showModal, setShowModal }) => {
   
   const handleItemNameChange = (event) => {
     setItemName(event.target.value);
+  };
+
+  const handleItemAmountChange = (event) => {
+    setItemAmount(event.target.value);
   };
 
   return (
@@ -60,7 +87,17 @@ const CreateItem = ({ showModal, setShowModal }) => {
                 value={itemPrice}
                 onChange={handleItemPriceChange}
             />
-
+            { 
+            isChecked ?
+            <input className="item-input"
+                type="text"
+                placeholder="Počet"
+                value={itemAmount}
+                onChange={handleItemAmountChange}
+            />
+            :
+            null
+            }
             <button onClick={handleSubmit} className="create-item-button-modal">
                 <span className="button-label">Vytvoriť položku</span>
             </button>
@@ -70,11 +107,18 @@ const CreateItem = ({ showModal, setShowModal }) => {
           message={message}
           onClose={() => {
             setMessage('');
+            setShowModal(false);
           }}
           />
         )}
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer>
+          <CustomCheckbox 
+          label="Vytvoriť len pre túto faktúru" 
+          isChecked={isChecked}
+          setIsChecked={setIsChecked}
+          />
+        </Modal.Footer>
       </Modal>
     </div>
   );
