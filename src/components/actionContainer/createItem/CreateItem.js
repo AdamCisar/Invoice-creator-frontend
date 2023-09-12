@@ -7,7 +7,7 @@ import CustomCheckbox from "./customCheckBox/CustomCheckBox";
 import { useParams } from "react-router-dom";
 import { saveCustomItem } from "../../service/CustomItemService";
 
-const CreateItem = ({ showModal, setShowModal }) => {
+const CreateItem = ({ showModal, setShowModal, onItemAdded }) => {
   const [message, setMessage] = useState('');
   const [isChecked, setIsChecked] = useState(true);
 
@@ -39,6 +39,8 @@ const CreateItem = ({ showModal, setShowModal }) => {
       };
     try {
         await saveCustomItem(itemData);
+        const alreadyExists = onItemAdded(itemData, itemAmount);
+        setMessage(alreadyExists);
         setMessage('Položka bola úspešne vytvorená.'); 
     } catch (error) {
         setMessage('Položku sa nepodarilo vytvoriť.');
