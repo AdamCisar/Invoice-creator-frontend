@@ -122,6 +122,8 @@ function InvoiceDetails() {
         <div className="invoice-content">
           <div className="invoice-data">
             Názov: {invoice.name}
+            <br/>
+            Adresa:
           </div>
           <div className="total-price">Celková suma: {totalPrice} €</div>
           <div className="table-responsive invoice-table">

@@ -1,4 +1,5 @@
-const API_URL = "http://192.168.0.52:8000/api/custom-item";
+// const API_URL = "http://192.168.0.52:8000/api/custom-item";
+const API_URL = "https://invoice-creator-backend.onrender.com/api/custom-item";
 
 export const saveCustomItem = async (itemData) => {
     try {

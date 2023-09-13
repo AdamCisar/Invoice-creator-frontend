@@ -1,5 +1,7 @@
 
-const API_URL = "http://192.168.0.52:8000/api/search/";
+// const API_URL = "http://192.168.0.52:8000/api/search/";
+const API_URL = "https://invoice-creator-backend.onrender.com/api/search/";
+
 
 export const searchForItems = async (query) => {
     try {
