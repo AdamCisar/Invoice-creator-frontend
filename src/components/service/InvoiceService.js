@@ -1,6 +1,6 @@
-// const API_URL = "http://127.0.0.1:8000/api/invoice/";
-// const API_URL = "http://192.168.0.52:8000/api/invoice/";
-const API_URL = "https://invoice-creator-backend.onrender.com/api/invoice/";
+import { URL } from './config';
+
+const API_URL = `${URL}/invoice/`;
 
 export const createInvoice= async (invoice) => {
     try {

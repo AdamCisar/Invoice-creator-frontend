@@ -1,5 +1,6 @@
-// const API_URL =  "http://192.168.0.52:8000/api/invoice-download/";
-const API_URL =  "https://invoice-creator-backend.onrender.com/api/invoice-download/";
+import { URL as PDF_URL } from './config';
+
+const API_URL =  `${PDF_URL}/invoice-download/`;
 
 export const getPdf = async (id) => {
     try {
